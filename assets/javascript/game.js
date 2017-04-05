@@ -12,7 +12,7 @@
 
 
 		function startOver() {
-		var wordsList = ["owl", "cat", "dog"];
+		var wordsList = ["owl", "cat", "dog", "bear", "wolf", "horse" , "lion", "tiger", "deer", "giraffe", "goat" ];
 
 		selectedWord = wordsList[Math.floor(Math.random() * wordsList.length)];
 		console.log(selectedWord); //for testing
@@ -41,7 +41,7 @@
 		var userInput = event.key;
 		userWord.push (userInput);
 
-		var html = "<h2> Letters Already Guessed:"+ userWord.join(" "); + "</h2>" ;
+		var html = "<h4> Letters Already Guessed: <br>"+ userWord.join(" "); + "</h4>" ;
 		document.querySelector('#guesses').innerHTML = html;
 
 		if (selectedWord.indexOf(userInput) > -1){
@@ -60,19 +60,19 @@
 		else {
 
 		guessesRemains--
-		var html = "<h2> Number of Guesses Remaining: "+ guessesRemains + "</h2>" ;
+		var html = "<h4> Number of Guesses Remaining: "+ guessesRemains + "</h4>" ;
   	document.querySelector('#guessesRemains').innerHTML = html;
 
 		}
-						var html = "<h2> "+ dashedWord.join(" "); + "</h2>" ;
+						var html = "<h4> "+ dashedWord.join(" "); + "</h4>" ;
             document.querySelector('#dashedWord').innerHTML = html;
 
 		if (rightGuesses === selectedWord.length) {
 
 			win++
-			var html = "<h2> Wins:"+ win + "</h2>" ;
+			var html = "<h4> Wins:"+ win + "</h4>" ;
 			document.querySelector('#wins').innerHTML = html;
-			var html2 = "<h2>You Got It! <br>The Word is " + selectedWord + " <br>Starting a New Word.</h2>" ;
+			var html2 = "<h4>You Got It! <br>The Word is " + selectedWord + " <br>Starting a New Word.</h4>" ;
       document.querySelector('#annunciationDiv').innerHTML = html2;
       
 
@@ -82,9 +82,9 @@
 
 		if (guessesRemains <= 0) {
 			losses++
-			var html = "<h2> losses:"+ losses + "</h2>" ;
+			var html = "<h4> losses:"+ losses + "</h4>" ;
       document.querySelector('#losses').innerHTML = html;
-      var html2 = "<h2>Game Over! <br> The Word Was "+ selectedWord +"<br> Starting a New Word.</h2>" ;
+      var html2 = "<h4>Game Over! <br> The Word Was "+ selectedWord +"<br> Starting a New Word.</h4>" ;
       document.querySelector('#annunciationDiv').innerHTML = html2;
 			startOver();
 
