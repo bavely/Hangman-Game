@@ -2,20 +2,53 @@
 <html>
 <head>
 	<title>Hangman Game</title>
+
+	<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
 </head>
 <body>
-	<div>
-	<p>---</p>
-	</div>
-	<div id="Win">
-	<p>Win: 0</p>
-	</div>
-	<div id="gesses"><p>Gesses Remains: 12</p></div>
-	<div id= "wordAlert"><p></p></div>
-	<button id="newWord">Start New Word</button>
+
+
+
+<nav  class="navbar navbar-default text-center">
+  <div class="container text-center">
+    
+		<h1 class="text-center">Hangman Game</h1>
+    
+  </div>
+</nav>
+
+<div class="container">
+<div class="row panel panel-success">
+<div class="col-md-6 col-md-offset-3" >
+<div>
+	<h2  class="page-header text-center">Press Any Key To Start!</h2>
+</div>
+<div class="text-center" id="dashedWord">
+	<h2 >The Word Here!</h2>
+</div>
+<div id="wins">
+	<h2 class="text-center">Wins: 0</h2>
+</div>
+<div id="guessesRemains">
+	<h2 class="text-center">Number of Guesses Remaining: 12</h2>
+</div>
+<div id="guesses">
+	<h2 class="text-center">Letters Already Guessed:</h2>
+</div>
+<div id="losses">
+	<h2 class="text-center">Losses: 0</h2>
+</div>
+<div id="annunciationDiv"  class="alert alert-info">
+	<h2 class="text-center">
+		
+	</h2>
+</div>
+</div>
+</div>
+</div>
 	<!--The game.js file-->
 	<script src="assets/javascript/game.js"></script>
-
-
 </body>
 </html>

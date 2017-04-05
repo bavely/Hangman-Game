@@ -1,89 +1,94 @@
 
-	var wordsList = ["owl", "cat", "dog"];
 
-	var win = 0;
-	var gessesRemains = 12;
-	var selectedWord = "owl";// wordsList[Math.floor(Math.random() * wordsList.length)];
-
-
-
-	document.onkeyup = function(event) {
-
-    var   userGesses = event.key;
-    
-    
-
-    if (selectedWord === "owl") {
-
-    	if (userGesses === "o") {
-
-    	  win++
-          
-          var html = "<p>Win:" + win + "</p>" ;
-		  document.querySelector('#Win').innerHTML = html;
-
-    	}  
-
-    	if (userGesses === "w") {
-
-    	  win++
-          
-          var html = "<p>Win:" + win + "</p>" ;
-		  document.querySelector('#Win').innerHTML = html;
+		var selectedWord;
+		var dashedWord = [];
+		var userWord = [];
+		var guessesRemains = 12;
+		var win = 0;
+		var losses = 0;
+		var  rightGuesses = 0;
+		var html2;
 
 
-    	}  
 
-    	if (userGesses === "l") {
-    	
-    	  win++
-    	  
-          var html = "<p>Win:" + win + "</p>" ;
-		  document.querySelector('#Win').innerHTML = html;
+		function startOver() {
+		var wordsList = ["owl", "cat", "dog"];
 
-    	}
+		selectedWord = wordsList[Math.floor(Math.random() * wordsList.length)];
+		console.log(selectedWord); //for testing
+			dashedWord=[];
+			userWord = [];
+			guessesRemains = 12;
+			rightGuesses = 0;
 
-    	if (win === 3) {
-		  var html = "<p>You Got it! The Word is owl <br> Click Start New Word to start over!</p>" ;
-		  document.querySelector('#wordAlert').innerHTML = html;
+		for (i=0; i < selectedWord.length; i++) {  
 
-    	}
-
-    	if (win > 3){
-    		location.reload(); 
-    		alert("Start New Word!");
-    	}
-
-    	if (userGesses !== "o" && userGesses !== "w" && userGesses !== "l")  {
-
-    		gessesRemains--
-              
-          var html = "<p>Gesses Remains:" + gessesRemains + "</p>" ;
-		  document.querySelector('#gesses').innerHTML = html;
-
-    	}
-
-    	if (gessesRemains === 0) {
-
-    		var html = "<p>Game Over! The Word is owl<br> Click Start New Word to start over!</p>" ;
-		  document.querySelector('#wordAlert').innerHTML = html;
-    	}
-
-    	if (gessesRemains < 0) {
-
-    		location.reload(); 
-    		alert("Start New Word!");
-    	}
-
-    } 
-
-    	else { 
-
-    	console.log ("dopaskd")
-    						}
+		dashedWord.push(" _ ");
+	 	document.getElementById("dashedWord").innerHTML = dashedWord.join(" ");
 
 
-	}
 
-	document.getElementById("newWord").onclick = function (event)
-	{location.reload();}
+		}
+		}
+
+
+
+
+		startOver();
+
+		document.onkeyup = function(event) {
+
+		var userInput = event.key;
+		userWord.push (userInput);
+
+		var html = "<h2> Letters Already Guessed:"+ userWord.join(" "); + "</h2>" ;
+		document.querySelector('#guesses').innerHTML = html;
+
+		if (selectedWord.indexOf(userInput) > -1){
+
+		rightGuesses++
+
+		for (var i = 0; i < selectedWord.length ; i++) {           
+
+		if(userInput === selectedWord[i]){
+
+		dashedWord[i]=userInput;
+		}
+		}
+		}
+
+		else {
+
+		guessesRemains--
+		var html = "<h2> Number of Guesses Remaining: "+ guessesRemains + "</h2>" ;
+  	document.querySelector('#guessesRemains').innerHTML = html;
+
+		}
+						var html = "<h2> "+ dashedWord.join(" "); + "</h2>" ;
+            document.querySelector('#dashedWord').innerHTML = html;
+
+		if (rightGuesses === selectedWord.length) {
+
+			win++
+			var html = "<h2> Wins:"+ win + "</h2>" ;
+			document.querySelector('#wins').innerHTML = html;
+			var html2 = "<h2>You Got It! <br>The Word is " + selectedWord + " <br>Starting a New Word.</h2>" ;
+      document.querySelector('#annunciationDiv').innerHTML = html2;
+      
+
+			startOver();
+				 	
+		}
+
+		if (guessesRemains <= 0) {
+			losses++
+			var html = "<h2> losses:"+ losses + "</h2>" ;
+      document.querySelector('#losses').innerHTML = html;
+      var html2 = "<h2>Game Over! <br> The Word Was "+ selectedWord +"<br> Starting a New Word.</h2>" ;
+      document.querySelector('#annunciationDiv').innerHTML = html2;
+			startOver();
+
+		}
+
+
+		}
