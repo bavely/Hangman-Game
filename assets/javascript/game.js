@@ -26,6 +26,7 @@
 		dashedWord.push(" _ ");
 	 	document.getElementById("dashedWord").innerHTML = dashedWord.join(" ");
 
+	 	document.getElementById("guessesRemains").innerHTML ="<h4> Number of Guesses Remaining: "+ guessesRemains + "</h4>";
 
 
 		}
