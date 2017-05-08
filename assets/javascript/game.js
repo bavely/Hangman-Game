@@ -8,10 +8,13 @@
 		var losses = 0;
 		var  rightGuesses = 0;
 		var html2;
-
-
+		var audio = new Audio("./assets/imges/Level_Up.mp3");
+		audio.loop = true;
+		audio.play();
 
 		function startOver() {
+
+
 			var wordsList = ["owl", "cat", "dog", "bear", "wolf", "horse" , "lion", "tiger", "deer", "giraffe", "goat" ];
 
 			selectedWord = wordsList[Math.floor(Math.random() * wordsList.length)];
@@ -38,7 +41,8 @@
 		startOver();
 
 		document.onkeyup = function(event) {
-
+			var click = new Audio("./assets/imges/click.wav");
+			click.play();
 			var userInput = event.key;
 			userWord.push (userInput);
 			if (userInput === userWord[userWord.length-2]){
