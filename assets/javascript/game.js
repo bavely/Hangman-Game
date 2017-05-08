@@ -12,24 +12,24 @@
 
 
 		function startOver() {
-		var wordsList = ["owl", "cat", "dog", "bear", "wolf", "horse" , "lion", "tiger", "deer", "giraffe", "goat" ];
+			var wordsList = ["owl", "cat", "dog", "bear", "wolf", "horse" , "lion", "tiger", "deer", "giraffe", "goat" ];
 
-		selectedWord = wordsList[Math.floor(Math.random() * wordsList.length)];
-		console.log(selectedWord); //for testing
-			dashedWord=[];
-			userWord = [];
-			guessesRemains = 12;
-			rightGuesses = 0;
+			selectedWord = wordsList[Math.floor(Math.random() * wordsList.length)];
+			console.log(selectedWord); //for testing
+				dashedWord=[];
+				userWord = [];
+				guessesRemains = 12;
+				rightGuesses = 0;
 
-		for (i=0; i < selectedWord.length; i++) {  
+			for (i=0; i < selectedWord.length; i++) {  
 
-		dashedWord.push(" _ ");
-	 	document.getElementById("dashedWord").innerHTML = dashedWord.join(" ");
+			dashedWord.push(" _ ");
+		 	document.getElementById("dashedWord").innerHTML = dashedWord.join(" ");
 
-	 	document.getElementById("guessesRemains").innerHTML ="<h4> Number of Guesses Remaining: "+ guessesRemains + "</h4>";
+		 	document.getElementById("guessesRemains").innerHTML ="<h4> Number of Guesses Remaining: "+ guessesRemains + "</h4>";
 
 
-		}
+								}
 		}
 
 
@@ -39,22 +39,27 @@
 
 		document.onkeyup = function(event) {
 
-		var userInput = event.key;
-		userWord.push (userInput);
+			var userInput = event.key;
+			userWord.push (userInput);
+			if (userInput === userWord[userWord.length-2]){
+				console.log(userWord[userWord.length-1]);
+				var html = "<h4> Letters Already Guessed: <br>"+ userWord.join(" "); + "</h4>" ;
+				document.querySelector('#guesses').innerHTML = html;
+			}
+			else{
+			var html = "<h4> Letters Already Guessed: <br>"+ userWord.join(" "); + "</h4>" ;
+			document.querySelector('#guesses').innerHTML = html;
 
-		var html = "<h4> Letters Already Guessed: <br>"+ userWord.join(" "); + "</h4>" ;
-		document.querySelector('#guesses').innerHTML = html;
+			if (selectedWord.indexOf(userInput) > -1){
 
-		if (selectedWord.indexOf(userInput) > -1){
+			rightGuesses++
 
-		rightGuesses++
+			for (var i = 0; i < selectedWord.length ; i++) {           
 
-		for (var i = 0; i < selectedWord.length ; i++) {           
+			if(userInput === selectedWord[i]){
 
-		if(userInput === selectedWord[i]){
-
-		dashedWord[i]=userInput;
-		}
+			dashedWord[i]=userInput;
+			}
 		}
 		}
 
@@ -91,5 +96,5 @@
 
 		}
 
-
+		}
 		}
